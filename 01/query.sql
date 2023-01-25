@@ -353,3 +353,14 @@ group by idp.pedido_id;
 update pedidos 
 set valor  = 8229
 where pedidos.id = 5;
+
+
+--listagem de pedidos
+select p.id as numero_pedido, p2.nome, p2.descricao,
+idp.quantidade, p2.preco, p2.quantidade_em_estoque, c.nome as cliente, v.nome  as vendedor
+from itens_do_pedido idp 
+join pedidos p on idp.pedido_id = p.id
+join clientes c on c.cpf = p.cliente_cpf
+join vendedores v on v.cpf = p.vendedor_cpf
+join produtos p2 on p2.id = idp.produto_id 
+where p.id = 5; --aqui vc troca pelo id do seu pedido
